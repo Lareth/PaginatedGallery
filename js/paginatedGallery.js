@@ -1,14 +1,16 @@
 jQuery.fn.extend({
-    gsPaginationGallery: function (options) {
+    paginatedGallery: function (options) {
         "use strict";
         var optionen = $.extend({
-            changeSpeed : 500
+            changeSpeed : 500,
+            thumbNailClass: '.thumbnails',
+            bigPictureClass: '.bigpicture'
         }, options);
         return this.each(function () {
             var $this = $(this),
-				$thumbnails = $this.find('.thumbnails'),
+				$thumbnails = $this.find(optionen.thumbNailClass),
 				$thumblinks = $thumbnails.find('a'),
-				$bigpicture = $this.find('.bigpicture'),
+				$bigpicture = $this.find(bigPictureClass),
 				$currentPicture = $bigpicture.find(':first-child');
 			init();
 			function init() {
@@ -31,11 +33,11 @@ jQuery.fn.extend({
 					$target = anchor.attr('href'),
 					$tempCurrentPicture = $currentPicture,
 					$newCurrentPicture = $bigpicture.find($target);
-					
+
 					$currentPicture.fadeOut(optionen.changeSpeed);
 					$newCurrentPicture.fadeIn(optionen.changeSpeed);
 					$currentPicture = $newCurrentPicture;
-					
+
 			});
         });
     }

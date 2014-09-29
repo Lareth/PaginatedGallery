@@ -6,13 +6,10 @@ Author: Lars Kuske
 */
 
 
-@include_once('/../../common.php'); 		//Common PHP Includen
-
 class Pagination {
 
 	private $getParams;
 	private $code;
-	
 	private $aktuelleSeite;
 	private $gesamteSeitenZahl;
 	private $dargestellteSeiten = 10;
@@ -23,20 +20,20 @@ class Pagination {
 		$this->setAktuelleSeite($seite);
 		$this->setGesamteSeitenZahl($gesamteSeitenZahl);
 	}
-	
+
 	public function setAktuelleSeite($seite){
 		$this->aktuelleSeite = $seite;
 	}
-	
+
 	public function setGesamteSeitenZahl($number){
 		$this->gesamteSeitenZahl = $number;
 	}
-	
+
 	public function getPagination(){
 		$this->bauePagination();
 		return $this->code;
 	}
-	
+
 	private function bauePagination(){												//Funktion zum Bauen der Pagination
 		$get = $this->getParams;
 		$code ="";
@@ -49,8 +46,8 @@ class Pagination {
 		}
 
 		if($this->gesamteSeitenZahl > 1){
-			$zwischenlinks = $this->dargestellteSeiten - 2;	
-			if($this->gesamteSeitenZahl < $this->dargestellteSeiten ){		//Wenn es gar nicht so viele Seiten gibt, müssen weniger Seiten generiert werden
+			$zwischenlinks = $this->dargestellteSeiten - 2;
+			if($this->gesamteSeitenZahl < $this->dargestellteSeiten ){		//Wenn es gar nicht so viele Seiten gibt, mï¿½ssen weniger Seiten generiert werden
 				$zwischenlinks = $this->gesamteSeitenZahl - 2;
 				if ($zwischenlinks < 0){
 					$zwischenlinks = 0;
@@ -86,7 +83,7 @@ class Pagination {
 				$code.= "\t<li class=\"pagination-item\"><a href=\"?" . $adresse . "\">$firstlinktext</a></li>\n";
 			}
 
-			//Die nächsten x Links erzeugen
+			//Die nï¿½chsten x Links erzeugen
 
 			$aktuellerPunkt = $startpunkt;
 
